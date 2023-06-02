@@ -1,3 +1,5 @@
+# MIS PRACTICAS DE DIA 2
+
 name_insert = input('Introduce tu nombre => ')
 mount_sales = int(input('ingresa la cantidad de money que ganaste => '))
 comision = round(mount_sales * 13 / 100)
@@ -27,6 +29,6 @@ print(len(words))
 
 num = float(input('Ingrese un número \'float\' => '))
 num1 = float(input('Ingrese un número \'float\' => '))
-print(round(num * num1))
+print(type(round(num * num1)))
 
-# subiendo mis archivos a github
+

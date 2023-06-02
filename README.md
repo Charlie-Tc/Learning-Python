@@ -1,4 +1,4 @@
-#  APRENDIENDO PYTHON
+#  APRENDIENDO PYTHON 🐍
 ¡Hola a todos!
 ```python
 
@@ -10,10 +10,9 @@ Mi nombre es Charlie y estoy emocionado de comenzar mi viaje en el mundo de la p
 
 ## ¿Por que python?
 Por que tiene una sintaxis simple y además tiene una amplia gama de aplicaciónes como:
-
-        * Intelegencia artificial
-        * Seguridad Informática
-        * etc.
+- Intelegencia Artificial
+- Seguridad informática
+- etc.
 
 ## ¿Qué voy a aprender y compartir aquí?
 A medida que progrese en mi aprendizaje de Python, compartiré mis experiencias, desafíos y aprendizajes en este repositorio de GitHub. Aquí podrás encontrar proyectos, ejercicios y recursos que estoy utilizando para mejorar mis habilidades en Python.
@@ -23,4 +22,5 @@ Si también estás interesado/a en Python o estás comenzando tu propio camino e
 
     ¡Gracias por visitar mi repositorio de GitHub y por ser parte de mi viaje en Python!
 
-¡Saludos y happy coding! 🐍✨
+
+¡Saludos y happy coding! 🐍✨😊
