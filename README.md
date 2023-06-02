@@ -1,4 +1,4 @@
-#  APRENDIENDO PYTHON
+#  APRENDIENDO PYTHON 🐍
 ¡Hola a todos!
 ```python
 
@@ -23,4 +23,5 @@ Si también estás interesado/a en Python o estás comenzando tu propio camino e
 
     ¡Gracias por visitar mi repositorio de GitHub y por ser parte de mi viaje en Python!
 
-¡Saludos y happy coding! 🐍✨
+
+¡Saludos y happy coding! 🐍✨😊
