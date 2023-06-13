@@ -15,7 +15,7 @@ my_list.pop(0)
 
 print(my_list)
 
-# sort .- Sirve para ordenar los elementos desordenados alfabeticamente o numéricamente
+# sort .- Sirve para ordenar los elementos desordenados alfabeticamente y numéricamente
 unordered_list = ['r', 'e', 'p', 'c', 'x']
 unordered_list.sort()
 print('Sort = ',unordered_list)

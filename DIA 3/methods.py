@@ -9,7 +9,7 @@ print('upper.- ',paragraph.upper())
 # lower .- Convierte la cadena de texto a Minúscula
 print('lower.- ',paragraph.lower())
 
-# title .- Convierte a Mayúscula el primer caracter de cada palabra
+# title .- Convierte a Mayúscula el primer carácter de cada palabra
 print('title.- ',paragraph.title())
 
 # swapcase .- Cambia las palabras Minúsculas a Mayúsculas y las Mayúsculas a Minúsculas.
@@ -32,15 +32,15 @@ print('split.- ', paragraph.split('o'))
 languages = ['chinese', 'spanish', 'english', 'japanes', 'indi']
 print('join.- ', ','.join(languages))
 
-# replace .- Reempla una cadena especificada
+# replace .- Reemplaza una cadena especificada
 language = ','.join(languages)
 print('replace.- ', language.replace('indi', 'Korean'))
 
 # startswicht .- Verifica si la cadena empieza con el prefijo especificado
-print('startwicht.- ', paragraph.startswith('esto'))
+print('startswith.- ', paragraph.startswith('esto'))
 
 # endswicht .- Verifica si la cadena termina con el prefijo especificado
-print('endwicht.- ', paragraph.endswith('esto'))
+print('endswith.- ', paragraph.endswith('esto'))
 
 # len .- es un contador de carácteres
 print('len.- ', len(paragraph))
@@ -60,7 +60,7 @@ print('isnumeric.- ', paragraph.isnumeric())
 #isdecimal.- Es una condicional que valida si todos los caracteres de la cadena son dígitos decimales
 print('isdecimal.- ', paragraph.isdecimal())
 
-#isalnum.- Valida si todos los caracteres de la cadena son alfanuméricos, letras o dígitos, y no hay
+#isalnum.- Valida si todos los caractéres de la cadena son alfanuméricos, letras o dígitos, y no hay
 # caracteres especiales ni espacios en blanco, de lo contrario.
 print('isalnum.- ', paragraph.isalnum())
 

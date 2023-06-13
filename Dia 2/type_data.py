@@ -1,7 +1,7 @@
-#TIPOS DE DATOS
+# TIPOS DE DATOS
 # Los tipos de datos en programación son una estructura de datos deferentes que nos sirven para almacenar información y manipularlos
 
-#String .- sive para introducir o almacenar textos
+# String .- sirve para introducir o almacenar textos
 name = 'Charly'
 print(name)
 print(type(name))

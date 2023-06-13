@@ -15,7 +15,6 @@ print(my_list[2][2])
 paragraph = 'python es un lenguaje de programacion. su sintaxis es muy simple. python tiene una amplia gama de aplicaciones'
 print(paragraph[39:65])
 
-my_numbers = [2, 3, 1, 5, 6, 7, 12, 9,]
 
 
 

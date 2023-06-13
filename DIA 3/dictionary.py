@@ -15,7 +15,7 @@ different_data = {
     'conditionals': [True, False]
 }
 print(different_data['languages']['chinese'])
-print(int(different_data['numbers'][2]))
+print(round(different_data['numbers'][2]))
 print(different_data['conditionals'][not 0])
 print('española' in different_data['languages']['spanish'])
 print(different_data)
