@@ -20,7 +20,7 @@ my_dict = suma(coffe=3, tea=7, soda=8)
 print(my_dict)
 def numbers(num1,num2,*args,**kwargs):
     print(f'{num1} es el primer número')
-    print(f'{num2} es el primer número')
+    print(f'{num2} es el segundo número')
 
     sum_args = sum(args)
     print(f'el resultado de la suma de tuplas es: {sum_args}')
