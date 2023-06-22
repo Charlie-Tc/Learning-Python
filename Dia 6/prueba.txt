@@ -1,0 +1,6 @@
+Hola, soy una nueva cadena de texto, sobreescribiendo lo anterior
+ Esta es la segunda línea agregada al último de un archivo existente
+Pepe
+Guapo
+Churro
+Bebechin
