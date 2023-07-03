@@ -44,6 +44,8 @@ print(guia)
 # parts[number_indexing]: imprime el nombre de la carpeta más reciente
 last = base.parts[-1]
 
+# shutil.rmtree: Elimina un directorio con contenido, incluyendo archivos y subdirectorios.
+
 
 
 '''new = Path(base,'Europa','Francia','París')
