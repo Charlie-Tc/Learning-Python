@@ -1,7 +1,6 @@
 from pathlib import Path
 import shutil
 from os import system
-#import os
 
 game_over = False
 
@@ -15,10 +14,12 @@ def choose_optios():
     print(''' you have \033[1m6\033[0m options to choose:
     [1] Read Recipes
     [2] Create Recipes
-    [3] Create Category
-    [4] Delete Recipes
-    [5] Delete Category
-    [6] End Program
+    [3] Create Content
+    [4] Create Category
+    [5] Delete Recipes
+    [6] Delete Category
+    [7] Delete content
+    [8] End Program
     ''')
 
 
@@ -59,7 +60,7 @@ def choose_recipe():
     display_recipes(selected_route)
 
     while True:
-        recipe_name = input('Choose a Recipe: ').lower()
+        recipe_name = input('Choose a Recipe: ').lower() + '.txt'
         recipe_path = selected_route / recipe_name
 
         if recipe_path.is_file():
@@ -75,19 +76,16 @@ def display_content():
     recipe_choose = choose_recipe()
     options = ['open','exit']
 
-    while True:
-        print('you have 2 options to choose: OPEN and EXIT')
-        user_choose = input('Choose a option: ').lower()
-        if user_choose == 'exit' and user_choose in options:
-            print(f'you choosen exit')
-            break
-        elif user_choose == 'open' and user_choose in options:
-            open_file = open(recipe_choose, 'r', encoding="utf-8")
-            content_display = open_file.read()
-            print(content_display)
-            break
-        else:
-            print('Choose a valid option')
+    print('you have 2 options to choose: OPEN and EXIT')
+    user_choose = input('Choose a option: ').lower()
+    if user_choose == 'exit' and user_choose in options:
+        print(f'you chosen exit')
+    elif user_choose == 'open' and user_choose in options:
+        open_file = open(recipe_choose, 'r', encoding="utf-8")
+        content_display = open_file.read()
+        print(content_display)
+    else:
+        print('Choose a valid option')
 
 
 def delete_category():
@@ -130,6 +128,28 @@ def create_recipes():
         print('The recipes was created successfully')
 
 
+def create_content():
+    content_recipe = choose_recipe()
+
+    if content_recipe.is_file():
+        with open(content_recipe, 'a') as file:
+            enter_content = input('Enter the content to the file: ') + ' '
+            file.write(enter_content)
+            print('The content has been added successfully')
+    else:
+        print('Enter the content')
+
+
+def delete_content():
+
+
+    if True:
+        with open(choose_recipe(), 'w') as file:
+            file.truncate(0)
+            print('Content was successfully removed')
+
+
+
 def finaliting_program():
     game_over = True
     print('Program Finished')
@@ -139,6 +159,7 @@ def finaliting_program():
 while True:
     choose_optios()
 
+
     enter_option = int(input('Enter a option: '))
 
     if enter_option == 1:
@@ -146,18 +167,20 @@ while True:
     elif enter_option == 2:
         create_recipes()
     elif enter_option == 3:
-        create_category()
+        create_content()
     elif enter_option == 4:
-        delete_recipes()
+        create_category()
     elif enter_option == 5:
-        delete_category()
+        delete_recipes()
     elif enter_option == 6:
+        delete_category()
+    elif enter_option == 7:
+        delete_content()
+    elif enter_option == 8:
         finaliting_program()
         break
-
     else:
         print('Enter a option valid')
-
 
 
 

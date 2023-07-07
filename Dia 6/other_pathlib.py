@@ -46,6 +46,8 @@ last = base.parts[-1]
 
 # shutil.rmtree: Elimina un directorio con contenido, incluyendo archivos y subdirectorios.
 
+# truncate(): Elimina el contenido del archivo, la deja totalmente vacía.
+
 
 
 '''new = Path(base,'Europa','Francia','París')
