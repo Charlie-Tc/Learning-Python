@@ -1,5 +1,5 @@
 # PROGRAMACIÓN ORIENTADA A OBJETOS
-# la programación orientada a objetos(POO) es una paradigma de programación que se basa en la creación y manipulación de obejetos.
+# la programación orientada a objetos(POO) es una paradigma de programación que se basa en la creación y manipulación de objetos.
 # Los objetos son o es una combinación entre datos(atributos) y comportamiento(métodos) a una entidad única.
 
 class fraction:
