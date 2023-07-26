@@ -211,8 +211,10 @@ def go_account():
                 pe.withdraw(user_r)
                 print(f'Se retiró ${user_r} de la cuenta N°: {pe.number_account}')
                 exit()
-        else:
+        elif user_insert != range(1,4):
             print('Muchas Gracias por operar en nuestro Banco 😊')
             break
+        else:
+            print('⚠ Invalid character ⚠')
 
 go_account()
