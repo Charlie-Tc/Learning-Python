@@ -1,35 +1,37 @@
-from numbers import *
-
-def perfumery():
-    print('Buen dia 😊')
-
-def pharmacy():
-    pass
-
-def cosmetic():
-    pass
+import turns
 
 def farace():
 
+    print('BIENVENIDO A TU FARMACIA PREFERIDA')
     while True:
         print('''
-        BIENVENIDO A TU FARMACIA PREFERIDA
+        A qué área desea dirigirse?
         
-        1️⃣ ➡ Perfumeria
-        2️⃣ ➡ Farmacia
-        3️⃣ ➡ Cosméticos
-        4️⃣ ➡ Exit
-        ''')
-        user = int(input('Choose a option: '))
-
-        if user == 1:
-            perfumery()
-        elif user == 2:
-            decorators(turno())
-        elif user == 3:
-            decorators(turno())
+        P ➡ Perfumeria 
+        F ➡ Farmacia
+        C ➡ Cosméticos''')
+        try:
+            users = input('Choose your field: ').upper()
+            ["P", "F", "C"].index(users)
+        except ValueError:
+            print('That is not a valid option')
         else:
             break
 
+    turns.decorators(users)
 
-farace()
+def init():
+
+    while True:
+        farace()
+        try:
+            other_tunr = input("Quieres sacar otro turno? [s] [N]: ").upper()
+            ["S", "N"].index(other_tunr)
+        except ValueError:
+            print('That is not a valid option')
+        else:
+            if other_tunr == 'N':
+                print('Gracias por operar')
+                break
+
+init()
