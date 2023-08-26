@@ -108,21 +108,21 @@ def recibo():
     for comida in texto_comida:
         if comida.get() != '0':
             texto_recibo.insert(END, f'{lista_comidas[x]}\t\t{comida.get()}\t'
-                                f'$ {int(comida.get()) * precios_comida[x]}\n')
+                                f'$ {round(int(comida.get()) * precios_comida[x], 2)}\n')
         x += 1
 
     x = 0
     for bebida in texto_bebida:
         if bebida.get() != '0':
             texto_recibo.insert(END, f'{lista_bebidas[x]}\t\t{bebida.get()}\t'
-                                f'$ {int(bebida.get()) * precios_bebida[x]}\n')
+                                f'$ {round(int(bebida.get()) * precios_bebida[x], 2)}\n')
         x += 1
 
     x = 0
     for postres in texto_postres:
         if postres.get() != '0':
             texto_recibo.insert(END, f'{lista_postres[x]}\t\t{postres.get()}\t'
-                                f'$ {int(postres.get()) * precios_postres[x]}\n')
+                                f'$ {round(int(postres.get()) * precios_postres[x], 2)}\n')
         x += 1
 
     texto_recibo.insert(END, f'-' * 54 + '\n')
@@ -181,6 +181,8 @@ def resetear():
     var_impuestos.set('')
     var_total.set('')
 
+
+
 #iniciar tkinter
 aplicacion = Tk()
 
@@ -198,7 +200,7 @@ aplicacion.config(bg='burlywood')
 
 # panel superior
 panel_superior = Frame(aplicacion, bd=1, relief=FLAT)
-panel_superior.pack(side= TOP)
+panel_superior.pack(side=TOP)
 
 # etiqueta titulo
 etiqueta_titulo = Label(panel_superior,
@@ -291,7 +293,7 @@ variables_bebida = []
 cuadros_bebida = []
 texto_bebida = []
 contador = 0
-for bebida in lista_comidas:
+for bebida in lista_bebidas:
 
     # crear checkbutton
     variables_bebida.append('')
@@ -501,7 +503,7 @@ texto_recibo.grid(row=0,
 # calculadora
 visor_calculadora = Entry(panel_calculadora,
                           font=('Dosis', 14, 'bold'),
-                          width=32,
+                          width=41,
                           bd=1,)
 visor_calculadora.grid(row=0,
                        column=0,
