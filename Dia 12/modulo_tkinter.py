@@ -325,38 +325,6 @@ def widget_listbox():
     listbox.insert(3, "Elemento 3")
 
     ventana = mainloop()
-def otra():
-    import tkinter as tk
-    from tkinter import ttk
-
-    ventana = tk.Tk()
-    ventana.title("Ejemplo Treeview")
-
-    # Crear el Treeview
-    tree = ttk.Treeview(ventana)
-
-    # Definir las columnas y encabezados
-    tree["columns"] = ("column1", "column2")
-    tree.heading("#0", text="Elementos", anchor="w")
-    tree.heading("column1", text="Columna 1")
-    tree.heading("column2", text="Columna 2")
-
-    # Agregar elementos y valores
-    parent = tree.insert("", "end", text="Padre", values=("Valor 1", "Valor 2"))
-    hijo1 = tree.insert(parent, "end", text="Hijo 1", values=("Valor 1", "Valor 2"))
-    tree.insert(parent, "end", text="Hijo 2", values=("Valor 1", "Valor 2"))
-    tree.insert(hijo1, "end", text="Nieto 1", values=("Valor 1", "Valor 2"))
-    tree.insert(hijo1, "end", text="Nieto 2", values=("Valor 1", "Valor 2"))
-
-    # Agregar subelementos al nieto 1
-    nieto1 = tree.get_children(hijo1)[0]  # Obtener el ID del nieto 1
-    tree.insert(nieto1, "end", text="Subnieto 1", values=("Valor 1", "Valor 2"))
-    tree.insert(nieto1, "end", text="Subnieto 2", values=("Valor 1", "Valor 2"))
-
-    tree.pack()
-
-    ventana.mainloop()
-
 
 
 # 11.- Scrollbar(): Un widget que se utiliza para desplazarse por otro widgets, como un widget de texto o lista.
@@ -551,6 +519,40 @@ def widget_treeview():
 
     root.mainloop()
 
+def otra():
+    import tkinter as tk
+    from tkinter import ttk
+
+    ventana = tk.Tk()
+    ventana.title("Ejemplo Treeview")
+
+    # Crear el Treeview
+    tree = ttk.Treeview(ventana)
+
+    # Definir las columnas y encabezados
+    tree["columns"] = ("column1", "column2")
+    tree.heading("#0", text="Elementos", anchor="w")
+    tree.heading("column1", text="Columna 1")
+    tree.heading("column2", text="Columna 2")
+
+    # Agregar elementos y valores
+    parent = tree.insert("", "end", text="Padre", values=("Valor 1", "Valor 2"))
+    hijo1 = tree.insert(parent, "end", text="Hijo 1", values=("Valor 1", "Valor 2"))
+    tree.insert(parent, "end", text="Hijo 2", values=("Valor 1", "Valor 2"))
+    tree.insert(hijo1, "end", text="Nieto 1", values=("Valor 1", "Valor 2"))
+    tree.insert(hijo1, "end", text="Nieto 2", values=("Valor 1", "Valor 2"))
+
+    # Agregar subelementos al nieto 1
+    nieto1 = tree.get_children(hijo1)[0]  # Obtener el ID del nieto 1
+    tree.insert(nieto1, "end", text="Subnieto 1", values=("Valor 1", "Valor 2"))
+    tree.insert(nieto1, "end", text="Subnieto 2", values=("Valor 1", "Valor 2"))
+
+    tree.pack()
+
+    ventana.mainloop()
+
+
+
 
 # 17.- Combobox(): el widget Combobox es parte del módulo ttk. Aquí tienes algunos métodos y atributos comunes del widget Combobox:
     # Métodos:
@@ -642,4 +644,40 @@ def widget_toplevel():
 
     root.mainloop()
 
-widget_toplevel()
+
+
+# tkinter.simpledialog: proporciona principalmente la función askstring() para crear cuadros de diálogo simples que permiten a
+# los usuarios ingresar texto. No tiene métodos o atributos propios más allá de los argumentos que se pueden pasar a la función askstring().
+# Aquí tienes una descripción de los parámetros admitidos por askstring():
+#
+# askstring(title, prompt, **kwargs):
+#
+#     title: El título del cuadro de diálogo.
+#     prompt: El mensaje o la pregunta que se muestra al usuario.
+#     **kwargs: Argumentos adicionales que se pueden utilizar para personalizar el cuadro de diálogo.
+#
+# askstring() devuelve la cadena de texto ingresada por el usuario. Si el usuario hace clic en "Aceptar",
+# el valor ingresado se devuelve como resultado. Si el usuario cierra el cuadro de diálogo sin ingresar nada o hace clic en "Cancelar",
+# el valor devuelto será None.
+#
+# Aparte de los parámetros mencionados, no existen métodos ni atributos adicionales en el módulo tkinter.simpledialog.
+# El módulo se centra en proporcionar una forma rápida y sencilla de obtener texto del usuario.
+def module_medialog():
+    import tkinter as tk
+    from tkinter import simpledialog
+
+    def show_name():
+        name = simpledialog.askstring("Nombre", "Por favor, ingresa tu nombre:")
+        if name:
+            label.config(text=f"Hola, {name}!")
+
+    root = tk.Tk()
+    root.title("Ejemplo de askstring")
+
+    button = tk.Button(root, text="Ingresa tu nombre", command=show_name)
+    button.pack()
+
+    label = tk.Label(root, text="")
+    label.pack()
+
+    root.mainloop()
