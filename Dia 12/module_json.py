@@ -69,7 +69,7 @@ class MiEncoder(json.JSONEncoder):
 
 data = {
     "nombres": {"Juan", "María", "Carlos"},
-    "edad": 28
+    "edad": 23
 }
 
 json_data = json.dumps(data, indent=4, cls=MiEncoder)

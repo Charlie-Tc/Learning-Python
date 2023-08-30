@@ -126,7 +126,6 @@ class UserData:
         if select:
             index_selected = select[0]
             display_selecte = self.list_of_contacts.get(index_selected)
-            search_selected = f"name"
 
         # ventana emergente de agregar contacto
         ventana = Toplevel(self.program)

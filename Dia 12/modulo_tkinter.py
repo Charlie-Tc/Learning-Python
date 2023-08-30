@@ -662,6 +662,7 @@ def widget_toplevel():
 #
 # Aparte de los parámetros mencionados, no existen métodos ni atributos adicionales en el módulo tkinter.simpledialog.
 # El módulo se centra en proporcionar una forma rápida y sencilla de obtener texto del usuario.
+
 def module_medialog():
     import tkinter as tk
     from tkinter import simpledialog
