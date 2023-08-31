@@ -12,7 +12,7 @@ class UserData:
         self.program.resizable(False, False)
 
         # variables
-        self.empty_contacts = []
+        self.contacts = []
         self.file_json = "contacts.json"
 
         # Lista de contactos
@@ -36,14 +36,22 @@ class UserData:
 
         self.guardar_contacto = Button(self.button_panel, text="Guardar Contacto 💾", command=self.save_contact, pady=7, padx=10, bd=3)
         self.guardar_contacto.grid(row=3, column=0)
+
+
+    def load_contacts(self):
+        with open(self.file_json, "r") as load_files:
+            self.contacts = json.load(load_files)
+            for name in self.contacts:
+                self.list_of_contacts.insert(END, name["Name"])
+
     def add_contact(self):
         def save_data():
             display_age = int(enter_age.get())
             display_nrotel = int(enter_nrotel.get())
-            self.empty_contacts.append({"Name": enter_name.get(), "Age": display_age, "Nro telephone": display_nrotel,
+            self.contacts.append({"Name": enter_name.get(), "Age": display_age, "Nro telephone": display_nrotel,
                                         "City": enter_city.get(), "Email": enter_email.get()})
 
-            self.list_of_contacts.insert(END, self.empty_contacts[-1]["Name"])
+            self.list_of_contacts.insert(END, self.contacts[-1]["Name"])
 
 
 
@@ -115,17 +123,16 @@ class UserData:
         boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12, command=save_data)
         boton_guardar.grid(row=0, column=2)
 
-    def load_contacts(self):
-        with open(self.file_json, "r") as load_files:
-            read_load = json.load(load_files)
-        for name in read_load:
-            self.list_of_contacts.insert(END, name["Name"])
+
 
     def edit_contact(self):
-        select = self.list_of_contacts.curselection()
-        if select:
-            index_selected = select[0]
-            display_selecte = self.list_of_contacts.get(index_selected)
+        def save_data():
+            display_age = int(enter_age.get())
+            display_nrotel = int(enter_nrotel.get())
+            self.contacts.append({"Name": enter_name.get(), "Age": display_age, "Nro telephone": display_nrotel,
+                                  "City": enter_city.get(), "Email": enter_email.get()})
+
+            self.list_of_contacts.insert(END, self.contacts[-1]["Name"])
 
         # ventana emergente de agregar contacto
         ventana = Toplevel(self.program)
@@ -142,7 +149,8 @@ class UserData:
         label_nombre.pack()
 
         # ingresar numbre y apellido
-        enter_name = Entry(ventana)
+        text_name = StringVar()
+        enter_name = Entry(ventana, textvariable=text_name)
         enter_name.pack()
 
         # panel de edad, numero telefonico y ciudad
@@ -155,17 +163,31 @@ class UserData:
 
         for d in datas:
             Label(data, text=datas[index], font=("Corbel", 10)).grid(row=0, column=columnas)
-            Entry(data, width=12).grid(row=1, column=columnas)
             columnas += 1
             index += 1
 
+        # ingresar edad
+        text_age = IntVar()
+        enter_age = Entry(data, width=13, textvariable=text_age)
+        enter_age.grid(row=1, column=0)
+
+        # ingresar numero telefonico
+        text_nrotel = IntVar()
+        enter_nrotel = Entry(data, width=13, textvariable=text_nrotel)
+        enter_nrotel.grid(row=1, column=1)
 
         # label correo
         label_correo = Label(ventana, text="Correo Electrónico", font="Corbel")
         label_correo.pack()
 
+        # ingresar ciudad
+        text_city = StringVar()
+        enter_city = Entry(data, width=13, textvariable=text_city)
+        enter_city.grid(row=1, column=2)
+
         # ingresar correo
-        enter_email = Entry(ventana, width=25)
+        text_email = StringVar()
+        enter_email = Entry(ventana, width=25, textvariable=text_email)
         enter_email.pack()
 
         # espacio vacio
@@ -181,17 +203,43 @@ class UserData:
         boton_cancel.grid(row=0, column=0)
         space_empty = Label(save_cancel, width=4)
         space_empty.grid(row=0, column=1)
-        boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12)
+        boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12, command=save_data)
         boton_guardar.grid(row=0, column=2)
+
+        select = self.list_of_contacts.curselection()
+        if select:
+            index_selected = select[0]
+            display_selecte = self.list_of_contacts.get(index_selected)
+            for contact in self.contacts:
+                if contact.get("Name") == display_selecte:
+                    contact_foung = contact
+                    text_name.set(contact_foung["Name"])
+                    text_age.set(contact_foung["Age"])
+                    text_nrotel.set(contact_foung["Nro telephone"])
+                    text_city.set(contact_foung["City"])
+                    text_email.set(contact_foung["Email"])
+                    self.remove_contact()
+                else:
+                    pass
+            #self.list_of_contacts.delete(display_selecte)
 
 
     def remove_contact(self):
-        pass
+        select = self.list_of_contacts.curselection()
+        if select:
+            index_selected = select[0]
+            display_selecte = self.list_of_contacts.get(index_selected)
+            for cont in self.contacts:
+                if cont.get("Name") == display_selecte:
+                    self.contacts.remove(cont)
+                    break
+
+            self.list_of_contacts.delete(index_selected)
 
 
     def save_contact(self):
         with open(self.file_json, "w") as write_json:
-            json.dump(self.empty_contacts, write_json)
+            json.dump(self.contacts, write_json, indent=4)
 
 
 
