@@ -45,6 +45,10 @@ class UserData:
                 self.list_of_contacts.insert(END, name["Name"])
 
     def add_contact(self):
+        def savedata_cancel():
+            save_data()
+            ventana.destroy()
+
         def save_data():
             display_age = int(enter_age.get())
             display_nrotel = int(enter_nrotel.get())
@@ -120,12 +124,14 @@ class UserData:
         boton_cancel.grid(row=0, column=0)
         space_empty = Label(save_cancel, width=4)
         space_empty.grid(row=0, column=1)
-        boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12, command=save_data)
+        boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12, command=savedata_cancel)
         boton_guardar.grid(row=0, column=2)
 
-
-
     def edit_contact(self):
+        def savedata_cancel():
+            save_data()
+            ventana.destroy()
+
         def save_data():
             display_age = int(enter_age.get())
             display_nrotel = int(enter_nrotel.get())
@@ -203,7 +209,7 @@ class UserData:
         boton_cancel.grid(row=0, column=0)
         space_empty = Label(save_cancel, width=4)
         space_empty.grid(row=0, column=1)
-        boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12, command=save_data)
+        boton_guardar = Button(save_cancel, text="Guardar", bd=3, padx=12, command=savedata_cancel)
         boton_guardar.grid(row=0, column=2)
 
         select = self.list_of_contacts.curselection()
@@ -221,8 +227,6 @@ class UserData:
                     self.remove_contact()
                 else:
                     pass
-            #self.list_of_contacts.delete(display_selecte)
-
 
     def remove_contact(self):
         select = self.list_of_contacts.curselection()
@@ -236,13 +240,9 @@ class UserData:
 
             self.list_of_contacts.delete(index_selected)
 
-
     def save_contact(self):
         with open(self.file_json, "w") as write_json:
             json.dump(self.contacts, write_json, indent=4)
-
-
-
 
 
 if __name__ == "__main__":
