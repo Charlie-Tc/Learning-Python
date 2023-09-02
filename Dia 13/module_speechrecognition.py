@@ -33,20 +33,99 @@
 
 
 import speech_recognition as sr
+def ejemplo():
+    # Crear un objeto Recognizer
+    recognizer = sr.Recognizer()
 
-# Crear un objeto Recognizer
-recognizer = sr.Recognizer()
+    # Capturar audio desde el micrófono
+    with sr.Microphone() as source:
+        print("Di algo...")
+        audio = recognizer.listen(source, timeout=5)  # Escuchar durante 5 segundos
 
-# Capturar audio desde el micrófono
-with sr.Microphone() as source:
-    print("Di algo...")
-    audio = recognizer.listen(source, timeout=5)  # Escuchar durante 5 segundos
+    try:
+        # Reconocer el habla utilizando el servicio de Google
+        text = recognizer.recognize_google(audio, language="es-MX")  # Cambia a tu idioma preferido
+        print("Has dicho:", text)
+    except sr.UnknownValueError:
+        print("No se pudo entender el habla")
+    except sr.RequestError as e:
+        print("Error al solicitar el reconocimiento; {0}".format(e))
 
-try:
-    # Reconocer el habla utilizando el servicio de Google
-    text = recognizer.recognize_google(audio, language="es-MX")  # Cambia a tu idioma preferido
-    print("Has dicho:", text)
-except sr.UnknownValueError:
-    print("No se pudo entender el habla")
-except sr.RequestError as e:
-    print("Error al solicitar el reconocimiento; {0}".format(e))
+def recognizer():
+
+    recognizer = sr.Recognizer()
+
+    # Reconocer habla utilizando el servicio de reconocimiento de voz de Google
+    with sr.AudioFile("title.wav") as source:
+        audio_data = recognizer.record(source)
+        text = recognizer.recognize_google(audio_data, language="en-ES")
+        print("Texto reconocido (Google):", text)
+
+def audio_file():
+
+    recognizer = sr.Recognizer()
+
+    # Cargar un archivo de audio
+    audio_file = sr.AudioFile("hora_actual.wav")
+
+    # Grabar audio desde una fuente y almacenarlo en el archivo
+    with audio_file as source:
+        recognizer.adjust_for_ambient_noise(source)
+        audio_data = recognizer.listen(source)
+        print("Audio grabado")
+        text = recognizer.recognize_google(audio_data, language="en-ES")
+        print("dijo lo siguiente: ", text)
+
+
+def microfone():
+
+    recognizer = sr.Recognizer()
+
+    # Listar nombres de micrófonos disponibles
+    microphone_names = sr.Microphone.list_microphone_names()
+    print("Micrófonos disponibles:", microphone_names)
+
+    # Capturar audio desde un micrófono en tiempo real
+    with sr.Microphone(device_index=0) as source:
+        print("Hable ahora...")
+        audio_data = recognizer.listen(source, timeout=5)
+        print("Grabación completa")
+        text = recognizer.recognize_google(audio_data, language="en-ES")
+        print("has dicho: ",text)
+
+
+
+from googletrans import Translator
+
+# Inicializar el reconocedor de voz
+recognizers = sr.Recognizer()
+
+# Inicializar el traductor
+#translator = Translator()
+
+
+# Función para reconocer el habla y traducirlo a español
+def reconocer_y_traducir():
+    with sr.Microphone() as source:
+        print("Habla algo...")
+        audio = recognizers.listen(source)
+
+    try:
+        # Reconocer el habla utilizando Google Speech Recognition
+        texto = recognizers.recognize_google(audio, language="es-ES")
+        print("Texto reconocido en español:", texto)
+
+        # Traducir el texto a español
+        #traduccion = translator.translate(texto, src='en', dest='es')
+        #print("Traducción al español:", traduccion.text)
+
+        # Puedes guardar la traducción en un archivo o hacer lo que necesites con ella
+    except sr.UnknownValueError:
+        print("No se pudo entender el habla.")
+    except sr.RequestError as e:
+        print("Error en la solicitud de reconocimiento de voz:", str(e))
+
+
+# Llamar a la función para iniciar el reconocimiento y traducción
+reconocer_y_traducir()
+
