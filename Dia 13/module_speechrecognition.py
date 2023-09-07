@@ -95,13 +95,8 @@ def microfone():
 
 
 
-from googletrans import Translator
-
 # Inicializar el reconocedor de voz
 recognizers = sr.Recognizer()
-
-# Inicializar el traductor
-#translator = Translator()
 
 
 # Función para reconocer el habla y traducirlo a español
@@ -115,10 +110,6 @@ def reconocer_y_traducir():
         texto = recognizers.recognize_google(audio, language="es-ES")
         print("Texto reconocido en español:", texto)
 
-        # Traducir el texto a español
-        #traduccion = translator.translate(texto, src='en', dest='es')
-        #print("Traducción al español:", traduccion.text)
-
         # Puedes guardar la traducción en un archivo o hacer lo que necesites con ella
     except sr.UnknownValueError:
         print("No se pudo entender el habla.")
@@ -126,6 +117,5 @@ def reconocer_y_traducir():
         print("Error en la solicitud de reconocimiento de voz:", str(e))
 
 
-# Llamar a la función para iniciar el reconocimiento y traducción
 reconocer_y_traducir()
 

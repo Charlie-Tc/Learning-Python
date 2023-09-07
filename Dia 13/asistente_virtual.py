@@ -1,7 +1,7 @@
 import pyttsx3
 import speech_recognition as sr
 import pywhatkit
-import wikipedia
+from random import choice
 import yfinance as yf
 import pyjokes
 import webbrowser
@@ -133,20 +133,23 @@ def pedir_cosas():
             hablar('Claro, estoy en eso')
             webbrowser.open('https://www.google.com')
             continue
-        elif 'que hora es' in pedido:
+        elif 'qué hora es' in pedido:
             pedir_hora()
             continue
-        elif 'que dia es hoy' in pedido:
+        elif 'qué día es hoy' in pedido:
             pedir_dia()
             continue
         elif 'busca en wikipedia' in pedido:
-            hablar('si como no, estoy en eso')
-            pedido = pedido.replace('busca en wikipedia', '')
-            pagina = wikipediaapi.Wikipedia(language="es", user_agent='MiAplicacion/1.0')
-            resultado = pagina.page(pedido)
-            hablar('Wikipedia dice lo siguiente:')
-            hablar(resultado.summary)
-            continue
+            try:
+                hablar('si como no, estoy en eso')
+                pedido = pedido.replace('busca en wikipedia', '')
+                pagina = wikipediaapi.Wikipedia(language="es", user_agent='MiAplicacion/1.0')
+                resultado = pagina.page(pedido)
+                hablar('Wikipedia dice lo siguiente:')
+                hablar(resultado.summary)
+                continue
+            except:
+                hablar('lo siento no te entendí, me puedes especificar tu búsqueda')
         elif 'Busca en internet' in pedido:
             hablar('ya mismo estoy en eso')
             pedido = pedido.replace('Busca en internet', '')
@@ -163,9 +166,9 @@ def pedir_cosas():
             continue
         elif 'precio de las acciones' in pedido:
             accion = pedido.split('de')[-1].strip()
-            cartera = {'apple': 'APPL',
-                       'amazon': 'AMZN',
-                       'google': 'GOOGL',
+            cartera = {'Apple': 'AAPL',
+                       'Amazon': 'AMZN',
+                       'Google': 'GOOGL',
                        }
             try:
                 accion_buscada = cartera[accion]
@@ -175,10 +178,18 @@ def pedir_cosas():
                 continue
             except:
                 hablar('Perdón pero no la he encontrado')
-        elif 'ya me tengo que ir adios' in pedido:
-            hablar('Esta bien, que tengas buen dia. hasta luego. Adiós')
+        elif 'ya me tengo que ir adiós' in pedido:
+            hablar('Esta bien, que tengas buen día. hasta luego. Adiós')
             break
         elif 'apaga a la princesa' in pedido:
             os.system("shutdown /s /t 1")
+        elif 'Muchas gracias' in pedido:
+            ways_to_repond = choice(['¡fue un placer ayudarte!', 'No hay de qué', '¡No hay problema en absoluto!'])
+            result = ways_to_repond[0:]
+            hablar(result)
+            continue
+        elif 'liz supende la PC' in pedido:
+            hablar('vale, Supendiendo la PC')
+            os.system('shutdown /h')
 
 pedir_cosas()
