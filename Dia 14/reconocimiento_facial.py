@@ -2,6 +2,7 @@ import cv2
 import face_recognition as fr
 import os
 import numpy
+from datetime import datetime
 
 # create database
 route = 'Empleados'
@@ -31,6 +32,22 @@ def encode(images):
 
     # return encoded list
     return list_encoded
+
+# employee register
+def record_income(person):
+    with open('registro.csv', 'r+') as f:
+        data_list = f.readlines()
+        names_register = []
+
+        for line in data_list:
+            income = line.split(',')
+            names_register.append(income[0])
+
+        if person not in names_register:
+            current_time = datetime.now()
+            string_now = current_time.strftime('%H:%M:%S')
+            f.writelines(f'\n {person}, {string_now}')
+
 
 list_employee_encoded = encode(my_images)
 
@@ -63,3 +80,19 @@ else:
             print("does not match any of our employees")
         else:
             print("Welcome to work")
+
+        # search for the name of the employee found
+        name = names_employee[index_matches]
+
+        y1, x2, y2, x1 = faceloct
+        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv2.rectangle(image, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+        cv2.putText(image, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+
+        record_income(name)
+
+        # Show the image obtained
+        cv2.imshow('image webcam', image)
+
+        # keep window open
+        cv2.waitKey(0)
