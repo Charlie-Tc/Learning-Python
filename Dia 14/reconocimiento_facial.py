@@ -11,7 +11,11 @@ names_employee = []
 list_employee = os.listdir(route)
 
 for name in list_employee:
+
+    # read the pictures
     image_current = cv2.imread(f'{route}\{name}')
+
+    #
     my_images.append(image_current)
     names_employee.append(os.path.splitext(name)[0])
 
