@@ -1,8 +1,6 @@
 import face_recognition as fr
-import os
 import images as img
 import cv2
-
 # MODULO FACE-RECOGNITION
     # Es una biblioteca de Python que proporciona una interfaz de alto nivel para el reconocimiento facial. Utiliza modelos preentrenados para detectar y reconocer caras en imágenes y vídeos.
 
@@ -33,44 +31,48 @@ def method_face_locations():
         print(f"Una cara está ubicada en Top: {top}, Left: {left}, Bottom: {bottom}, Right: {right}")
 
 
-# 3.- face_recognition.face_encodings(image, known_face_locations=None): genera codificaciones faciales para una imagen.
+# 3.- face_recognition.face_encodings(image, known_face_locations=None): sirve para convertir una imagen de una cara en código númerico único.
 def method_face_encodinfs():
     # Cargar una imagen con una cara conocida
-    known_image = fr.load_image_file(img.route_image)
-    # Cargar una imagen con una cara desconocida
-    unknown_image = fr.load_image_file(img.route_image2)
-    # Codificar las características faciales de la cara conocida
-    biden_encoding = fr.face_encodings(known_image)[0]
-    # Codificar las características faciales de la cara desconocida con 10 jitterings
-    unknown_encoding = fr.face_encodings(unknown_image, num_jitters=10)[0]
+    jingyi_image = fr.load_image_file(img.route_image)
 
-method_face_encodinfs()
+    # Cargar una imagen con una cara desconocida
+    wang_image = fr.load_image_file(img.route_image2)
+
+    # Codificar las características faciales de la cara conocida
+    jingyi_encoding = fr.face_encodings(jingyi_image)[0]
+
+    # Codificar las características faciales de la cara desconocida con 10 jitterings
+    wang_encoding = fr.face_encodings(wang_image, num_jitters=10)[0]
+
+    'El output de este código es una array de números. Cada número representa una característica de la cara, como la distancia entre los ojos, la forma de la nariz, etc.'
+
+
+
 # 4.- face_recognition.compare_faces(known_face_encodings, face_encoding_to_check, tolerance=0.6): compara dos codificaciones faciales.
 def method_compare_faces():
+
     # Cargar una imagen con una cara conocida
-    known_image = fr.load_image_file(img.route_image3)
+    gem_image = fr.load_image_file(img.route_image3)
+
     # Cargar una imagen con una cara desconocida
-    unknown_image = fr.load_image_file(img.route_image)
+    jingyi_image = fr.load_image_file(img.route_image)
+
     # Codificar las características faciales de la cara conocida
-    biden_encoding = fr.face_encodings(known_image)[0]
+    gem_encoding = fr.face_encodings(gem_image)[0]
+
     # Codificar las características faciales de la cara desconocida
-    unknown_encoding = fr.face_encodings(unknown_image)[0]
+    jingyi_encoding = fr.face_encodings(jingyi_image)[0]
+
     # Comparar las codificaciones faciales con una tolerancia de 0.5
-    result = fr.compare_faces([biden_encoding], unknown_encoding, tolerance=0.5)
+    result = fr.compare_faces([gem_encoding], jingyi_encoding, tolerance=0.5)
+
     # Imprimir el resultado
-    print(result)
+    print(f'Gem es parecida a Jingyi? {result[0]}')
 
 
-# 5.- face_recognition.predict_faces(): predice las identidades de las caras en una imagen.
-def method_predict_faces():
 
-    # Predecir las caras en la imagen
-    face_locations = fr.face_locations(img.route_image3)
-    predictions = fr.predict_faces(img.route_image3, face_locations)
-    print("Predicciones de caras:", predictions)
-
-
-# 6.- face_recognition.face_distance(face_encodings, face_to_compare): Calcula la distancia euclidiana entre las codificaciones faciales para comparar la similitud.
+# 5.- face_recognition.face_distance(face_encodings, face_to_compare): Calcula la distancia euclidiana entre las codificaciones faciales para comparar la similitud.
 def method_face_distance():
     # Cargar una imagen con una cara conocida
     known_image = fr.load_image_file(img.route_image3)
@@ -87,7 +89,7 @@ def method_face_distance():
     print(distances)
 
 
-# 7.- face_recognition.face_landmarks(image): Encuentra puntos de referencia faciales como ojos, nariz y boca en una imagen.
+# 6.- face_recognition.face_landmarks(image): Encuentra puntos de referencia faciales como ojos, nariz y boca en una imagen.
 def method_face_landmarks():
     # Cargar una imagen con una cara
     image = fr.load_image_file(img.route_image2)
@@ -109,18 +111,11 @@ def method_face_landmarks():
     # tolerance: Un valor que controla la tolerancia para las comparaciones de similitud facial.
 
 'EJEMPLO'
-def exaple_basic():
-
-
-    route = os.path.join(os.getcwd(),'Empleados\Federico Garay.jpg')
-    route_image = os.path.join(os.getcwd(),'Empleados\jingyi-ju.jpg')
-    route_image2 = os.path.join(os.getcwd(),'Empleados\wang churan.jpg')
-    route_image3 = os.path.join(os.getcwd(),'Empleados\gem.jpg')
-
+def example_basic():
 
     # Carga la imagen
-    image = fr.load_image_file(route_image3)
-    image2 = fr.load_image_file(route_image3)
+    image = fr.load_image_file(img.route_image3)
+    image2 = fr.load_image_file(img.route_image3)
 
     # Genera codificaciones faciales
     face_encodings = fr.face_encodings(image)[0]
@@ -130,4 +125,3 @@ def exaple_basic():
     known_face_encodings = fr.compare_faces([face_encodings], face_encodings2, tolerance=0.5)
 
     print(known_face_encodings)
-

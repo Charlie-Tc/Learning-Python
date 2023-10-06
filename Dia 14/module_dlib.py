@@ -1,11 +1,7 @@
 import cv2
-import os
 import dlib
 import numpy as np
-
-route_image = os.path.join(os.getcwd(),'Empleados\jingyi-ju.jpg')
-route_image2 = os.path.join(os.getcwd(),'Empleados\wang churan.jpg')
-route_image3 = os.path.join(os.getcwd(),'Empleados\gem.jpg')
+import images as ims
 
 # MODULO DLIB
 # El módulo se puede utilizar para realizar una variedad de tareas de aprendizaje automático, visión artificial y procesamiento de imágenes.
@@ -13,13 +9,12 @@ route_image3 = os.path.join(os.getcwd(),'Empleados\gem.jpg')
 # Metodos
 # 1.- face_recognition(): Sirve para reconocer caras en una imagen usando el modelo entrenado con aprendizaje profundo.
 def method_faceRecognition():
-    from skimage import io
 
     # Carga el modelo de reconocimiento facial desde el archivo
     fr_model = dlib.face_recognition_model_v1("dlib_face_recognition_resnet_model_v1.dat")
 
     # Carga la imagen en color utilizando skimage (skimage.io.imread)
-    img = io.imread(route_image2)
+    img = cv2.imread(ims.route_image2)
 
     # Crea un detector de caras con dlib
     detector = dlib.get_frontal_face_detector()
@@ -57,7 +52,7 @@ def method_faceRecognition():
 # 2.- face_landmarks(): Sirve para detectar los puntos característicos de una cara, como los ojos, la boca, etc.
 def method_faceLandmarks():
     # Lee la imagen en color
-    img = cv2.imread(route_image)
+    img = cv2.imread(ims.route_image)
 
     # Carga el modelo de detección de puntos faciales desde el archivo
     sp_model = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
@@ -95,7 +90,7 @@ def method_faceLandmarks():
 # 3.- image_keypoints(): Este método sirve para extaer los puntos clave de una imagen, es decir, los puntos que son relevantes para describir la estructura y el contenido de la imagen.
 def method_keypoints():
     # Lee la imagen en escala de grises
-    img = cv2.imread(route_image3, cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread(ims.route_image3, cv2.IMREAD_GRAYSCALE)
 
     # Crea el objeto del algoritmo ORB
     orb = dlib.image_keypoints("ORB")
@@ -113,7 +108,7 @@ def method_keypoints():
 def method_object_detection():
 
     # Lee la imagen en color
-    img = cv2.imread(route_image3)
+    img = cv2.imread(ims.route_image3)
 
     # Carga el modelo YOLO desde el archivo
     net = dlib.object_detection("yolov3.cfg", "yolov3.weights")
@@ -180,10 +175,8 @@ def method_object_detection():
 'EJEMPLO'
 def example():
 
-    route = os.path.join(os.getcwd(),'Empleados\Federico Garay.jpg')
-
     # Carga la imagen
-    image = dlib.load_rgb_image(route)
+    image = dlib.load_rgb_image(ims.route_image3)
 
     # Crea un detector de rostros
     detector = dlib.get_frontal_face_detector()
@@ -199,3 +192,5 @@ def example():
         print("    W:", face.right() - face.left())
         print("    H:", face.bottom() - face.top())
 
+
+example()

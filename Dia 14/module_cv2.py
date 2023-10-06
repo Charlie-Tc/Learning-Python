@@ -1,9 +1,5 @@
 import cv2
-import os
-
-route_image = os.path.join(os.getcwd(),'Empleados\jingyi-ju.jpg')
-route_image2 = os.path.join(os.getcwd(),'Empleados\wang churan.jpg')
-route_image3 = os.path.join(os.getcwd(),'Empleados\gem.jpg')
+import images as ims
 
 # MODULO CV2 o OPENCV
     # Se puede utilizar para realizar un amplia gama de tareas de visión artificial, como detección de objetos, reconocimiento facial, siguimiento de movimiento y visión por computadora.
@@ -13,15 +9,15 @@ route_image3 = os.path.join(os.getcwd(),'Empleados\gem.jpg')
 def method_imread():
 
     # Lee la imagen en color
-    img = cv2.imread(route_image, cv2.IMREAD_COLOR)
+    img = cv2.imread(ims.route_image, cv2.IMREAD_COLOR)
     print('imagen en color ',img)
 
     # Lee la imagen en escala de grises
-    img_gray = cv2.imread(route_image2, cv2.IMREAD_GRAYSCALE)
+    img_gray = cv2.imread(ims.route_image2, cv2.IMREAD_GRAYSCALE)
     print('imagen en escala de grises ',img_gray)
 
     # Lee la imagen tal como está
-    img_unchanged = cv2.imread(route_image3, cv2.IMREAD_UNCHANGED)
+    img_unchanged = cv2.imread(ims.route_image3, cv2.IMREAD_UNCHANGED)
     print('imagen tal como está ',img_unchanged)
 
     # Muestra la imagen
@@ -40,7 +36,7 @@ def method_imread():
 def method_imshow():
 
     # Lee la imagen en color
-    img = cv2.imread(route_image2, cv2.IMREAD_COLOR)
+    img = cv2.imread(ims.route_image2, cv2.IMREAD_COLOR)
 
     # Muestra la imagen en una ventana llamada "Imagen"
     cv2.imshow("Imagen", img)
@@ -56,7 +52,7 @@ def method_imshow():
 def method_imwrite():
 
     # Lee la imagen en color
-    img = cv2.imread(route_image3, cv2.IMREAD_COLOR)
+    img = cv2.imread(ims.route_image3, cv2.IMREAD_COLOR)
 
     # Guarda la imagen en otro archivo con formato PNG
     success = cv2.imwrite("imagen.png", img)
@@ -69,7 +65,7 @@ def method_imwrite():
 def method_cvtCOlor():
 
     # Lee la imagen en color
-    img = cv2.imread(route_image3, cv2.IMREAD_COLOR)
+    img = cv2.imread(ims.route_image3, cv2.IMREAD_COLOR)
 
     # Convierte la imagen a escala de grises
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -90,7 +86,7 @@ def method_cvtCOlor():
 def method_threshold():
 
     # Lee la imagen en escala de grises
-    img = cv2.imread(route_image2, cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread(ims.route_image2, cv2.IMREAD_GRAYSCALE)
 
     # Aplica un umbral binario con un valor de 127
     thresh, img_bin = cv2.threshold(img, 125, 255, cv2.THRESH_BINARY)
@@ -114,7 +110,7 @@ def method_threshold():
 def method_findContours():
 
     # Cargar una imagen en escala de grises
-    image = cv2.imread(route_image, cv2.IMREAD_GRAYSCALE)
+    image = cv2.imread(ims.route_image, cv2.IMREAD_GRAYSCALE)
 
     # Aplicar umbralización simple
     _, thresh = cv2.threshold(image, 128, 255, cv2.THRESH_BINARY)
@@ -149,7 +145,7 @@ def method_findContours():
 def met_detect():
 
     # Lee la imagen en color
-    img = cv2.imread(route_image, cv2.IMREAD_COLOR)
+    img = cv2.imread(ims.route_image, cv2.IMREAD_COLOR)
 
     # Crea el objeto CascadeClassifier con el archivo XML del modelo
     face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
@@ -192,6 +188,110 @@ def met_videoCapture():
 
     # Libera el objeto VideoCapture
     cap.release()
+
+# putText(): se utiliza para dibujar texto en una imagen.
+def method_putTText():
+
+    # Lee la imagen
+    image = cv2.imread(ims.route_image4)
+
+    # Escribe el texto
+    cv2.putText(image, "Hola, mundo", (image.shape[1] // 2, image.shape[0] // 2), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                (0, 255, 0), 2)
+
+    # Muestra la imagen
+    cv2.imshow("Imagen con texto", image)
+    cv2.waitKey(0)
+
+
+# rectangle(): se utiliza para dibujar un rectángulo en una imagen.
+def method_rectangule():
+
+    # Cargar una imagen desde un archivo
+    imagen = cv2.imread(ims.route_image2)
+
+    # Especificar las coordenadas del vértice superior izquierdo y el vértice inferior derecho del rectángulo
+    punto1 = (100, 700)  # Coordenadas (x, y) del vértice superior izquierdo
+    punto2 = (700, 100)  # Coordenadas (x, y) del vértice inferior derecho
+
+    # Especificar el color del rectángulo en formato BGR (azul, verde, rojo)
+    color = (0, 255, 0)  # Verde en este caso (0, 255, 0)
+
+    # Especificar el grosor de la línea del rectángulo
+    grosor = 2
+
+    # Dibujar el rectángulo en la imagen
+    imagen_con_rectangulo = cv2.rectangle(imagen, punto1, punto2, color, grosor)
+
+    # Mostrar la imagen con el rectángulo
+    cv2.imshow('Imagen con Rectángulo', imagen_con_rectangulo)
+
+    # Esperar a que se presione una tecla y luego cerrar la ventana
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+method_rectangule()
+
+# split(): se utiliza para dividir una imagen en canales de color.
+def method_split():
+
+    # Lee la imagen
+    image = cv2.imread(ims.route_image3)
+
+    # Divide la imagen en canales de color
+    (b, g, r) = cv2.split(image)
+
+    # Muestra los canales de color
+    cv2.imshow("Canal rojo", b)
+    cv2.imshow("Canal verde", g)
+    cv2.imshow("Canal azul", r)
+    cv2.waitKey(0)
+
+
+# max(): se utiliza para encontra el valor máximo en una matriz.
+def method_max():
+
+    # Lee la imagen
+    image = cv2.imread(ims.route_image)
+    image2 = cv2.imread(ims.route_image)
+
+    # Encuentra el valor máximo en la imagen
+    max_value = cv2.max(image, image2)
+
+    # Imprime el valor máximo
+    print(max_value)
+
+
+# min(): se utiliza para encontrar el valor mínimo de una matriz.
+def method_min():
+
+    # Lee la imagen
+    image = cv2.imread(ims.route_image3)
+    image2 = cv2.imread(ims.route_image3)
+
+    # Encuentra el valor mínimo en la imagen
+    min_value = cv2.min(image, image2)
+
+    # Imprime el valor mínimo
+    print(min_value)
+
+
+# add(): se utiliza para sumar dos matrices.
+def method_add():
+
+    # Lee las imágenes
+    image1 = cv2.imread(ims.route_image2)
+    image2 = cv2.imread(ims.route_image2)
+
+    # Suma las imágenes
+    added_image = cv2.add(image1, image2)
+
+    # Muestra la imagen sumada
+    cv2.imshow("Imagen sumada", added_image)
+    cv2.waitKey(0)
+
+
+
 
 
 
